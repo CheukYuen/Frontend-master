@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+  function Animal() {
+    this.species = 'animal';
+  }
+
+  Animal.prototype.getSpecies = function () {
+    return this.species;
+  };
+
+  function Cat(name, color) {
+    this.name = name;
+    this.color = color;
+    this.age = '10000';
+
+    Animal.call(this);
+
+  }
+
+  Cat.prototype.eat = 'mouse';
+
+  var F = function () {
+
+  };
+
+  F.prototype = Animal.prototype;
+
+  Cat.prototype = new F();
+
+
+  Cat.prototype.constructor = Cat;
+
+  Cat.uber = Animal.prototype;
+
+  var cat1 = new Cat('big', 'yellow');
+
+  console.log(F.prototype);
+
+
+</script>
+
+</body>
+</html>

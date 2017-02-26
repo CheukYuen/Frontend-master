@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  function Person(first, last) {
+    this.first = first;
+    this.last = last;
+  }
+
+  Person.prototype.getFullName = function () {
+    return this.first + '_' + this.last
+  };
+
+  function Employee(id, last, first) {
+    this.id = id;
+    Person.call(this, last, first);
+  }
+
+  Employee.prototype.getID = function () {
+    return this.id
+  };
+
+  Employee.prototype = Object.create(Person.prototype);
+
+  Employee.prototype.constructor = Employee;
+
+
+  var e1 = new Employee(11, 'lin', 'Zhuoyuan');
+
+
+
+
+
+//  var Chinese = {
+//    nation: 'China'
+//  };
+//
+//
+//  var Doctor = Object.create(Chinese);
+//
+//
+//  Doctor.career = 'doctor';
+//
+//  console.log(Doctor.nation);
+//  console.log(Doctor.career)
+
+
+</script>
+</body>
+</html>

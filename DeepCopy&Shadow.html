@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+  var Chinese = {
+    nation: 'China',
+    arr: [1, 2, 3],
+    a: {c: 4}
+  };
+
+  function shadowCopy(src) {
+    var dst = {};
+    for (var prop in src) {
+      if (src.hasOwnProperty(prop)) {
+        dst[prop] = src[prop]
+
+      }
+    }
+
+    return dst
+  }
+
+
+  function deepCopy(p, c) {
+    var c = c || {};
+    for (var i in p) {
+      if (typeof p[i] === 'object') {
+        c[i] = (p[i].constructor === Array) ? [] : {};
+        deepCopy(p[i], c[i])
+      } else {
+
+        c[i] = p[i]
+
+      }
+    }
+    return c;
+  }
+
+
+
+  var c1 = deepCopy(Chinese);
+
+  Chinese.arr.push(4);
+  Chinese.a.c = 11;
+  console.log(c1.arr);
+  console.log(c1.a.c);
+
+</script>
+</body>
+</html>

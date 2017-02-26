@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  function Cat(name, color) {
+    this.name = name;
+    this.color = color;
+  }
+
+  Cat.prototype.type = 'Cat';
+
+  Cat.prototype.eat = function () {
+    console.log('eat mouse');
+  };
+
+  var cat1 = new Cat('big', 'yellow');
+  var cat2 = new Cat('little', 'black');
+
+//  alert(cat1.hasOwnProperty('type'));
+
+  for(var prop in cat1) {
+    if(cat1.hasOwnProperty(prop)) {
+      console.log(""+prop+""+cat1[prop]);
+
+    }
+  }
+
+
+</script>
+
+</body>
+</html>

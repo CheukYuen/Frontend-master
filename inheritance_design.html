@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function Dog(name) {
+      this.name = name;
+    }
+
+    Dog.prototype = {species: '犬科'};
+
+
+    var d1 = new Dog('da mao');
+    var d2 = new Dog('er mao');
+
+    Dog.prototype.species = '猫科';
+
+    alert(d1.species);
+    alert(d2.species);
+</script>
+
+
+
+</body>
+</html>
