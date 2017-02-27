@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  function Yelp(restaurants, ratings) {
+    this.restaurants = restaurants;
+    this.ratings = ratings;
+  }
+
+  /*
+   Returns list of Restaurant within radius.
+
+   latitude: latitude in number
+   longitude: longitude in number
+   radius: kilometer in number
+   diningHour: If null, find any restaurant in radius.
+   Otherwise return array of open restaurants at specified hour.
+   sortByRating: If true, sort result in descending order,
+   highest rated first.
+   */
+  Yelp.prototype.find = function (latitude, longitude, radius, diningHour, sortByRating) {
+    // IMPLEMENT ME
+    var result = [];
+    if (this.rateMap == null) {
+      this.rateMap = createRateMap.call(this);
+    }
+    var radius2 = radius * radius;
+    var lati, long, distance2;
+    for (var i = 0; i < this.restaurants.length; i++) {
+      lati = latitude - this.restaurants[i].latitude;
+      long = longitude - this.restaurants[i].longitude;
+      distance2 = lati * lati - long * long;
+      if (distance2 < radius2 && checkOpen(this.restaurants[i].openHour, this.restaurants[i].closeHour)) {
+        this.restaurants[i].rate = this.rateMap[this.restaurants[i].id];
+        result.push(this.restaurants[i]);
+
+      }
+
+    }
+
+
+    function createRateMap() {
+      var rateMap = {};
+      for (var i = 0; i < this.ratings.length; i++) {
+        rateMap[this.ratings[i].id] = this.ratings[i].rating;
+      }
+      return rateMap;
+    }
+
+
+    function checkOpen(open, close) {
+      if (diningHour == null) {
+        return true;
+      } else {
+        return open <= diningHour && diningHour <= close;
+      }
+    }
+
+
+    if (sortByRating == true) {
+      result.sort(function (a, b) {
+        return  b.rate - a.rate ;
+      });
+    }
+
+    return result;
+
+  };
+
+
+  function Restaurant(id, name, latitude, longitude, openHour, closeHour) {
+    this.latitude = latitude;
+    this.longitude = longitude;
+    this.id = id;
+    this.name = name;
+    this.openHour = openHour; // in [0-23]
+    this.closeHour = closeHour; // in [0-23]
+  }
+
+  function Rating(id, rating) {
+    this.id = id;
+    this.rating = rating; // in [1-5]
+  }
+
+  function main() {
+    var restaurants = [new Restaurant(0, "Domino's Pizza", 37.7577, -122.4376, 7, 23), new Restaurant(1, "aaa", 37, -123, 3, 23), new Restaurant(2, "bbb", 32.7577, -32, 4, 20)
+      , new Restaurant(3, "ddd", 34.7577, 5234, 8, 13)
+    ]; // Omitted
+    var ratings = [new Rating(0, 3),
+      new Rating(1, 4),
+      new Rating(2, 35),
+      new Rating(3, 6)]; //Omitted
+
+    y = new Yelp(restaurants, ratings);
+
+    console.log(y.find(37.7, -122.6, 5, null, true));
+  }
+
+  main();
+
+</script>
+
+</body>
+</html>
