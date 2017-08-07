@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="videoPlayer.js" ></script>
+
+<script>
+//    http://stackoverflow.com/questions/950087/how-do-i-include-a-javascript-file-in-another-javascript-file
+
+    var loadJS = function(url, callback, location){
+        //url is URL of external file, implementationCode is the code
+        //to be called from the file, location is the location to
+        //insert the <script> element
+
+        var scriptTag = document.createElement('script');
+        scriptTag.src = url;
+
+        scriptTag.onload = callback;
+        scriptTag.onreadystatechange = callback;
+
+        location.appendChild(scriptTag);
+    };
+
+
+
+    var Video = (function () {
+        var instancePromise;
+
+        function init() {
+
+            var promise = new Promise(function (resolve, reject) {
+                try{
+                    resolve(new CDN.VideoPlayer());
+                } catch(e) {
+                    reject(e);
+                }
+
+            });
+
+
+            return promise;
+        }
+
+        return {
+            getVideoPlayer: function () {
+                if (!instancePromise) {
+                    instancePromise =  init();
+                    return instancePromise
+                }
+
+                return instancePromise;
+            }
+        }
+
+    })();
+
+    var createVideo = function(){
+        window.GS = {};
+
+        window.GS.Video = Video;
+
+        var instance1 = window.GS.Video.getVideoPlayer();
+        instance1.then(function success(videoInstance) {
+            console.log(videoInstance)
+        }, function error(errorMsg) {
+            console.log(errorMsg);
+        });
+    };
+
+
+    loadJS('http://cdn.com/videoplayer.js', createVideo, document.body);
+
+
+
+
+</script>
+
+</body>
+</html>
