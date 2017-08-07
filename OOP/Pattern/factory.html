@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  //  http://www.cnblogs.com/TomXu/archive/2012/02/23/2353389.html
+  //https://github.com/David-CodingSerf/Blog/blob/master/JavaScript%20Design%20pattern/cn/8%E3%80%90%E8%AF%91%E3%80%91JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9A%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%BA%8C%EF%BC%89.md
+
+  function Car() {
+    this.type = 'car';
+    this.make = 'Ford';
+  }
+
+  var CarFactory = {
+    // 用只一个方法就能制造一辆可任意组合功能的汽车
+    makeCar: function (features) {
+      var car = new Car();
+
+      // 如果指定了功能就把功能加到car上
+      if (features && features.length) {
+        var i = 0,
+          l = features.length;
+
+        // 遍历所有的功能并添加到car上
+        for (; i < l; i++) {
+          var feature = features[i];
+
+          switch (feature) {
+            case 'powerwindows':
+              car = new PowerWindowsDecorator(car);
+              break;
+            case 'powerlocks':
+              car = new PowerLocksDecorator(car);
+              break;
+            case 'ac':
+              car = new ACDecorator(car);
+              break;
+          }
+        }
+      }
+
+      return car;
+    }
+  };
+
+  var myCar = CarFactory.makeCar();
+  console.log(myCar);
+
+</script>
+</body>
+</html>

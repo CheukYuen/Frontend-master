@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    function getReminder(num1, num2) {
+      if (num2 == 0) {
+        return new Error('aaa');
+      }
+      return num1 % num2
+    }
+
+    console.log(getReminder(5, 0))
+
+    function Folder() {
+      this.filesList = [];
+      this.folderList = [];
+      this.name = name;
+    }
+    
+    
+    function File() {
+      this.name = name;
+    }
+
+    function FileSystem() {
+      this.fileList = [];
+      this.folderList = [];
+    }
+    
+    
+    function print() {
+
+      for (var i = 200; i >= 1; i--){
+        if (i%3 == 0){
+          console.log('i', i);
+        }
+      }
+    }
+
+
+    print();
+
+    
+
+</script>
+</body>
+</html>

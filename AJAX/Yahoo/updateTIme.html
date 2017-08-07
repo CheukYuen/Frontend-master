@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="upBtn">Update</button>
+<div id="time">0</div>
+<script>
+    let btn = document.querySelector('#upBtn');
+    let counter = 0;
+    let timeElement = document.querySelector('#time');
+    btn.addEventListener('click', function () {
+      counter += 1;
+      timeElement.innerText = counter;
+
+    });
+</script>
+</body>
+</html>

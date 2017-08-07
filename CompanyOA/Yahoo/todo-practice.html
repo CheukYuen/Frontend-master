@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <h1>Todo</h1>
+    <input type="text" id = "input">
+    <button id="addTodo">Add Todo</button>
+    <div class="list"></div>
+</div>
+
+<script>
+  var listElement = document.querySelector('.list');
+  var inputElement = document.querySelector('#input');
+  createTodo();
+  addListener();
+  var addTodoBtn = document.querySelector('#addTodo').addEventListener('click', addTodo);
+
+  function createTodo() {
+    var html = '<ul>';
+    for (var i = 0; i < 10; i++) {
+      html += '<li class="todoItem">Event ' + i + '<button id="btn' + i + '">x</button></li>';
+    }
+    html += '</ul>';
+    listElement.innerHTML = html;
+  }
+
+
+  function addListener() {
+    var todoItem = document.querySelector('ul');
+    console.log(todoItem);
+    todoItem.addEventListener('click', function (event) {
+      if (event.target.tagName.toLowerCase() == 'button') {
+        removeTodo.call(this, event.target);
+      }
+      console.log(event.target.tagName.toLowerCase() == 'button');
+
+    });
+
+//    for (var i = 0; i < todoItems.length; i++) {
+//      todoItems[i].addEventListener('click', removeTodo);
+//    }
+  }
+
+  function addTodo() {
+    var liElement = document.createElement('li');
+    liElement.setAttribute('class', 'todoItem');
+    liElement.innerText = inputElement.value;
+    var btnElement = document.createElement('button');
+    btnElement.innerText = 'x';
+    liElement.appendChild(btnElement);
+    listElement.querySelector('ul').appendChild(liElement);
+//    liElement.addEventListener('click', removeTodo);
+    inputElement.value = '';
+  }
+
+  function removeTodo(target) {
+    var parent = target.parentNode.parentNode;
+    var child = target.parentNode;
+    parent.removeChild(child);
+
+  }
+
+
+</script>
+
+</body>
+</html>

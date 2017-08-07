@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+  function Person(first) {
+    this.first = first;
+  }
+
+  Person.prototype.getName = function () {
+    return this.first
+  };
+
+  function Employee(id, first) {
+    this.id = id;
+    Person.call(this, first)
+  }
+
+  Employee.prototype = Object.create(Person.prototype);
+
+  Employee.prototype.constructor = Employee;
+
+
+  var e1 = new Employee(11, 'Leon');
+
+
+  var Chinese = {
+    nation: 'China',
+    arr: [1, 2, 3],
+    a: {c: 4}
+  };
+
+  // shadow copy
+  function shadowCopy(src) {
+    var dst = {};
+    for (var prop in src) {
+      if (scr.hasOwnProperty(prop)) {
+        dst[prop] = src[prop]
+      }
+      console.log(prop)
+    }
+
+    return dst
+  }
+
+  // deep copy
+  function deepCopy(src, c) {
+    var c = c || {};
+    for (var i in src) {
+      if (typeof src[i] == 'object') {
+        c[i] = (p[i].constructor == Array) ? [] : {};
+        deepCopy(p[i], c[i])
+
+      } else {
+        c[i] = src[i]
+      }
+    }
+
+    return c
+
+  }
+
+  shadowCopy(Chinese);
+
+
+</script>
+
+</body>
+</html>

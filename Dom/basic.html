@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="aaa">aaa</div>
+<div id="bbb">bbb</div>
+<div class="order">
+    <ul class="ul">
+        <li>one</li>
+        <li>two</li>
+        <li>three</li>
+        <li>four</li>
+        <li>five</li>
+    </ul>
+    <ul class="ul1">
+        <li>one1</li>
+        <li>two2</li>
+        <li>three3</li>
+        <li>four4</li>
+        <li>fiv5</li>
+    </ul>
+    <div id="nothing"></div>
+</div>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+
+
+<script>
+  //    create
+  var c1 = document.createElement('div');
+  var text1 = document.createTextNode('Hello world');
+
+
+  //search
+  var search1 = document.querySelector('.aaa');
+  var search2 = document.querySelector('#bbb');
+  var ul = document.querySelector('.order');
+  search1.remove();
+  //edit
+  document.body.appendChild(c1);
+  document.body.appendChild(text1);
+
+//  search1.insertAdjacentHTML('afterbegin', '<div>before</div>');
+//  search1.insertAdjacentHTML('afterend', '<div>after</div>');
+
+  //attributes
+  var attrs = ul.attributes;
+  console.log(attrs);
+
+  console.log(ul.getAttribute('class'));
+  console.log(ul.setAttribute('class', 'highlight'));
+
+</script>
+
+</body>
+</html>

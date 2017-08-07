@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <button class="add">Add Todo</button>
+</div>
+
+<div id="input">
+</div>
+
+<script>
+
+  var addElement = document.querySelector('.add');
+  var list = document.querySelector('#input');
+
+  addElement.addEventListener('click', addItem);
+
+  var html = '<ul>';
+
+  for (var i = 0; i < 10; i++) {
+    html += '<li>' + i + '<button class ="remove" id = "' + i + '">x</button></li>';
+  }
+
+  list.innerHTML = html;
+
+  var buttons = document.querySelectorAll('.remove');
+
+
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', removeItem);
+  }
+
+  function removeItem() {
+    var parent = this.parentNode.parentNode;
+    var child = this.parentNode;
+    parent.removeChild(child);
+  }
+
+  function addItem() {
+    var liElement = document.createElement('li');
+    liElement.innerText = '10';
+    liElement.appendChild(creatDeleteBtn());
+    document.querySelector('ul').appendChild(liElement);
+  }
+
+  function creatDeleteBtn() {
+    var deleteBtn = document.createElement('button');
+    deleteBtn.setAttribute('class', 'remove');
+    deleteBtn.innerHTML = 'x';
+    deleteBtn.addEventListener('click', removeItem);
+    return deleteBtn;
+  }
+
+</script>
+
+
+</body>
+</html>

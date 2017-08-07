@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+  var n = 123;
+  var obj = {n: 456};
+
+  function f() {
+    console.log(this);
+    console.log(this.n);
+  }
+
+  f();
+
+//  f.call(obj);
+//  f.call(this);
+//  f.call(null);
+//  f.call(undefined);
+//  f.call(window);
+//  f.call();
+
+
+</script>
+</body>
+</html>

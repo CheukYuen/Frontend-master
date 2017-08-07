@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  var loadJS = function (url, callback) {
+    var image = new Image();
+    image.src = url;
+    image.onload = callback;
+    image.onreadystatechange = callback;
+    return image
+  };
+
+
+  function sayHello() {
+    alert('hello')
+  }
+
+  var url = 'http://img.laonanren.com/upload2/2016-04/16040110408919.jpg';
+
+  var Image = (function (url) {
+    var instancePromise;
+
+    function init() {
+      var promise = new Promise(function (resolve, reject) {
+        var request = new XMLHttpRequest();
+        request.open('GET', url);
+        request.onload = function () {
+          if (request.status === 200) {
+            resolve(request.response);
+          } else {
+            reject(new Error('error'))
+          }
+        }
+
+
+      });
+    }
+
+    return {
+      getImage: function () {
+        if (!instancePromise) {
+          instancePromise = init();
+          return instancePromise
+        }
+        return instancePromise;
+      }
+    }
+  })(url);
+
+
+  function imgLoad(url) {
+    return new Promise(function(resolve, reject) {
+      var request = new XMLHttpRequest();
+      request.open('GET', url);
+      request.responseType = 'blob';
+      request.onload = function() {
+        if (request.status === 200) {
+          resolve(request.response);
+        } else {
+          reject(new Error('图片加载失败：' + request.statusText));
+        }
+      };
+      request.onerror = function() {
+        reject(new Error('发生网络错误'));
+      };
+      request.send();
+    });
+  }
+
+
+
+
+</script>
+
+</body>
+</html>

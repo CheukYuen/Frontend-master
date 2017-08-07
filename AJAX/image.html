@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  var preloadImage = function (path) {
+    return new Promise(function (resolve, reject) {
+      var image = new Image();
+      image.onload  = function () {
+        resolve(image);
+      };
+      image.onerror = reject;
+      image.src = path;
+    });
+  };
+
+  var url = 'http://img.laonanren.com/upload2/2016-04/16040110408919.jpg';
+
+
+  preloadImage(url).then(function success(res) {
+    console.log(res);
+  });
+
+
+</script>
+</body>
+</html>

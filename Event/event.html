@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button id="btn1">aaaaaaa</button>
+
+<ul id="my-list">
+    <li>foo <button>x</button></li>
+    <li>bar <button>x</button></li>
+    <li>abc <button>x</button></li>
+    <li>123 <button>x</button></li>
+</ul>
+
+<script>
+
+    var btn1 = document.querySelector('#btn1');
+    function myFun() {
+      alert('hello world');
+    }
+    var event = btn1.addEventListener('click', myFun);
+
+    btn1.removeEventListener('click', myFun);
+
+
+    document.getElementById('my-list').addEventListener('click', function(event) {
+      var clickedEl = event.target;
+      if(clickedEl.tagName === 'BUTTON') {
+        var listItem = clickedEl.parentNode;
+        listItem.parentNode.removeChild(listItem);
+      }
+    });
+
+</script>
+
+</body>
+</html>

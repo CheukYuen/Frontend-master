@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  var o = {
+    f1: function () {
+      console.log(this);
+      var f2 = function () {
+        console.log(this);
+      }();
+    }
+  };
+
+  var obj = {
+    getT : function () {
+      return this;
+    }
+  };
+
+  function f123() {
+    this.a = 'aa';
+
+
+    this.getA = function () {
+      return this;
+
+    }
+  }
+
+  var f = function () {
+    return function () {
+      return this
+    }
+  };
+
+  console.log(f123); // true
+  console.log(f.call(obj) === obj);
+   // true
+
+
+
+</script>
+
+</body>
+</html>

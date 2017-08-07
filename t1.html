@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container {
+            position: relative;
+            left: 0;
+            top: 0;
+            display: block;
+            height: 800px;
+
+        }
+
+        .child {
+            display: inline-block;
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 25%;
+            height: 200px;
+            background-color: #0066CC;
+            margin-top: 0;
+            vertical-align:top;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="child "></div>
+    <div class="child"></div>
+    <div class="child"></div>
+</div>
+
+<script>
+  eles = document.querySelectorAll('.child');
+  console.log(eles);
+  for (var i = 0; i < 3; i++) {
+    eles[i].addEventListener('mouseenter', function (e) {
+      console.log(e.target);
+      e.target.style.height = '400px'
+    })
+  }
+
+  for (var i = 0; i < 3; i++) {
+    eles[i].addEventListener('mouseleave', function (e) {
+      console.log(e.target);
+      e.target.style.height = '200px'
+    })
+  }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a href="www.gogole.com" class="target">
+    <h1>      Hello</h1>
+</a>
+
+<a href="www.gogol132e.com">
+    <h1>      Herry Potty</h1>
+</a>
+<a class="target" href="www.facbook.com"></a>
+
+
+<script>
+
+    var elems = document.querySelectorAll('a.target')
+
+
+    var arr = [];
+    for(var i = 0 ; i < elems.length; i++) {
+      var temp = [];
+      temp.push(elems[i].href);
+
+      if ( elems[i].querySelector('h1')) {
+        var eleH1 = elems[i].querySelector('h1').textContent;
+
+        temp.push(eleH1);
+      }
+
+      arr.push(temp)
+    }
+
+    console.log(arr)
+
+
+    function f() {
+      for (var i = 0; i < this.length; i++) {
+        return i;
+      }
+    }
+    String.prototype.add = f;
+
+    var test = 'abs';
+    test.add()
+</script>
+</body>
+
+
+</html>

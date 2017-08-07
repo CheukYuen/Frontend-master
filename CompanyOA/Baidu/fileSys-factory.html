@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  // I am using tree structure. a  {a: {b:{c: {d: 'hello world!'} }}}
+  // key is file or directory name.
+  // if key is directory, value is subtree object, otherwise value is the content string.
+
+  function FileSystem() {
+    this.root = {};
+  }
+
+  function FileEntity() {
+    this.type = '';
+  }
+
+  var FileEntityFactory = {
+    FileEntity: function (type) {
+      var entity = new FileEntity();
+
+      switch (type){
+        case 'folder':
+          entity[type] = 'folder';
+          break;
+        case  'file':
+          entity[type] = 'file';
+          break;
+      }
+
+      return entity
+    }
+  };
+
+  //
+
+</script>
+
+</body>
+</html>

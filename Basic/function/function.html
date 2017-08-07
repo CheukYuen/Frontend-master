@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+  var expensive = function (x, y) {
+    return x + y
+  };
+
+
+  function once(fn) {
+    var temp;
+    return function () {
+
+      if (!temp) {
+        temp = fn(arguments[0], arguments[1]);
+      }
+      return temp;
+    }
+  }
+
+
+  var cheap = once(expensive);
+
+  console.log(cheap(2, 3)); //=》5
+  console.log(cheap(4, 5)); //=》5
+  console.log(cheap(2, 1)); //=》5
+  console.log(cheap(4, 5)); //=》5
+  console.log(cheap(4, 5)); //=》5
+  console.log(cheap(4, 5)); //=》5
+  console.log(cheap(4, 5)); //=》5
+
+
+</script>
+
+</body>
+</html>

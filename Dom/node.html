@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>DOM 第一课 <span id="one">asdasdas</span> <span>kkkkkk</span></h1>
+<p>Hello world!</p>
+
+<script>
+  var t = 3;
+
+  var A = function () {
+    this.t = 1;
+  };
+
+  A.prototype.say = function () {
+
+    console.log(this.t)
+  };
+
+
+  var b = {
+    t: 2,
+    say: function () {
+      console.log('bb')
+    }
+  };
+
+
+  var a = new A();
+
+  c = a.say.bind(a);
+
+
+  c.call(this);
+
+
+
+
+
+</script>
+</body>
+</html>

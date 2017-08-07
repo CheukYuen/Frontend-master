@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  {
+    let a;
+    var b = 20;
+  }
+
+
+  for (let i = 0; i < 10; i++) {
+    setTimeout(function () {
+//      console.log(i);
+    }, 10)
+  }
+
+  for (var i = 0; i < 10; i++) {
+    (function (i) {
+      setTimeout(function () {
+//        console.log(i);
+      }, 10);
+    })(i);
+
+  }
+
+
+  //  var i is global, it will re-assign value
+
+  var a = [];
+  for (let i = 0; i < 10; i++) {
+    a[i] = function () {
+      console.log(i);
+    }
+  }
+
+  // output 10 if use var
+  //  a[0]();
+
+
+  // for 循环父类和子类是 两个作用域
+  for (let i = 0; i < 3; i++) {
+    let i = 'abc';
+//    console.log(i);
+  }
+
+  //  console.log(foo);
+  var foo = 2;
+
+  let bar = 3;
+
+  // block scope
+  // 不重复
+//  function func(arg) {
+//    let arg = arg;
+//
+//  }
+
+  //    func(123);
+
+  var tmp = new Date();
+
+  function f() {
+    console.log(tmp);
+    if(false) {
+      var tmp = "hello world";
+    }
+  }
+
+  f();
+
+  const PI = 3.14;
+
+
+  console.log(PI)
+
+
+    var f = v => v;
+
+
+    console.log(f(5))
+
+
+
+
+
+</script>
+
+</body>
+</html>

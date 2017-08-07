@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function increase(start) {
+      return function () {
+        return start+=1;
+      }
+    }
+
+    function increase2(start) {
+      return start++;
+    }
+
+
+    var inc = increase(5);
+
+
+    
+    function getInner() {
+      var a = 10;
+      function f2() {
+        return a
+      }
+
+      return f2;
+    }
+
+
+    var result = getInner();
+
+    console.log(result());
+</script>
+</body>
+</html>

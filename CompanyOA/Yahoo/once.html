@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+
+
+    function once() {
+
+      var fn;
+      console.log(arguments);
+
+      return function () {
+        if (!fn) {
+            fn = function () {
+              return fn
+            }
+        }
+
+        return fn
+      }
+
+    }
+
+
+    var cheap = once;
+
+
+    cheap(1,2); // => 3
+    cheap(2,2); // => 3
+    cheap(3,2);
+    cheap(1,2);
+
+</script>
+
+</body>
+</html>
