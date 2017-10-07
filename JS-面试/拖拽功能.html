@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        #dragTarget {
+            width: 488px;
+            height: 70px;
+            padding: 10px;
+            border: 1px solid #aaaaaa;
+        }
+    </style>
+</head>
+<body>
+
+<p>请把 W3School 的图片拖放到矩形中：</p>
+
+<div id="dragTarget" ondrop="drop_handler(event)" ondragover="drapover_handler(event)" ondragenter="dragenter_handler(event)"></div>
+
+<br/>
+
+<div style="border: 5px solid red; width: 500px; height: 100px">
+    <img id="dragImg" src="http://placehold.it/200x50" draggable="true" ondragstart="dragstart_handler(event)" alt="">
+</div>
+
+<script>
+  function dragstart_handler(event) {
+    event.dataTransfer.setData("text/plain", event.target.id)
+  }
+
+  function drop_handler(event) {
+    event.preventDefault();
+    let data = event.dataTransfer.getData("text");
+    event.target.appendChild(document.getElementById(data));
+  }
+
+  function drapover_handler(event) {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "copy";
+  }
+
+  function dragenter_handler(event) {
+    event.target.style.background = "purple";
+  }
+</script>
+
+</body>
+</html>

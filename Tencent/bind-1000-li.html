@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="email">
+<input type="text" id="name">
+<input type="text" id="age">
+<p id="help"></p>
+</body>
+<script>
+  //  var createLi = function () {
+  //    var ulElement = document.createElement('ul');
+  //    for (var i = 0; i < 10; i++) {
+  //      var liElement = document.createElement('li');
+  //      liElement.innerHTML = i;
+  //      ulElement.appendChild(liElement);
+  //      (function (number) {
+  //        liElement.addEventListener('click', function () {
+  //          console.log(number);
+  //        });
+  //      })(i)
+  //    }
+  //
+  //    return ulElement
+  //  };
+
+
+  var createUl = function () {
+    var ulElement = document.createElement('ul');
+    for (var i = 0; i < 10; i++) {
+      var liElement = document.createElement('li');
+      liElement.innerHTML = i;
+      ulElement.appendChild(liElement);
+    }
+
+    ulElement.addEventListener('click', function (e) {
+      if (e.target && e.target.nodeName === 'LI') {
+        console.log(e.target.innerHTML);
+      }
+    });
+    return ulElement
+  };
+
+
+  function showHelp(help) {
+    document.getElementById('help').innerHTML = help;
+  }
+  function setupHelp() {
+    var helpText = [
+      {'id': 'email', 'help': 'Your e-mail address'},
+      {'id': 'name', 'help': 'Your full name'},
+      {'id': 'age', 'help': 'Your age (you must be over 16)'}
+    ];
+
+    for (var i = 0; i < helpText.length; i++) {
+      var item = helpText[i];
+
+      (function (data) {
+        document.getElementById(data.id).onfocus = function () {
+          showHelp(data.help);
+        }
+      })(item);
+
+    }
+  }
+  setupHelp();
+
+  document.body.appendChild(createUl())
+
+
+</script>
+</html>

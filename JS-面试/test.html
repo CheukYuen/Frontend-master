@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>lazyLoad</title>
+    <style type="text/css" media="all">
+        body, ul, li {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            font-size: 12px;
+            -webkit-user-select: none;
+            -webkit-text-size-adjust: none;
+            font-family: helvetica;
+        }
+
+        .lazyLoad ul li {
+            height: 200px;
+            border: 1px solid red;
+            margin-bottom: 2px;
+            overflow: hidden;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="lazyLoad">
+    <ul>
+        <li><span data-src="https://www.geekjc.com">我不是图片啦</span></li>
+        <li><img data-src="http://qiniu.cllgeek.com/react02.png" alt=""></li>
+        <li><img data-src="http://qiniu.cllgeek.com/react03.png" alt=""></li>
+        <li><img data-src="http://qiniu.cllgeek.com/react04.png" alt=""></li>
+        <li><img data-src="http://qiniu.cllgeek.com/react05.png" alt=""></li>
+        <li><img data-src="http://qiniu.cllgeek.com/react06.png" alt=""></li>
+        <li><img data-src="http://qiniu.cllgeek.com/react07.png" alt=""></li>
+        <li><img data-src="http://qiniu.cllgeek.com/react08.png" alt=""></li>
+        <li><img load-src="http://qiniu.cllgeek.com/react13.png" alt=""></li>
+    </ul>
+</div>
+
+<script>
+
+</script>
+</body>
+</html>

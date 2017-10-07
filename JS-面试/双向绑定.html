@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>首先将该任务分成几个子任务：</p>
+<ul>
+    <li>1、输入框以及文本节点与 data 中的数据绑定</li>
+    <li>2、输入框内容变化时，data 中的数据同步变化。即 view => model 的变化。</li>
+    <li>3、data 中的数据变化时，文本节点的内容同步变化。即 model => view 的变化。</li>
+    <!--https://juejin.im/entry/59116fa6a0bb9f0058aaaa4c-->
+    <!--https://segmentfault.com/a/1190000006599500-->
+</ul>
+
+<img src="https://user-gold-cdn.xitu.io/2017/5/9/921eb4f32090ccb311dfd665d49ca7db?imageView2/0/w/1280/h/960" alt="">
+<img src="https://user-gold-cdn.xitu.io/2017/5/9/9c3551ed848146350bde8fcc80d6c3e0?imageView2/0/w/1280/h/960" alt="">
+
+<div id="app">
+    <input type="text" id="inputDiv">
+    <span id="display"></span>
+</div>
+
+
+<script>
+  let obj = {};
+  let input = document.getElementById('inputDiv');
+  let display = document.getElementById('display');
+
+  Object.defineProperty(obj, 'hello', {
+    set: function (val) {
+      input.value = val;
+      display.innerHTML = val;
+    }
+  });
+
+  input.addEventListener('keyup', function (e) {
+    obj.hello = e.target.value;
+  })
+
+
+</script>
+</body>
+</html>

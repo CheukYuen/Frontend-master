@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+
+
+    function Sheep() {
+      this.eat = function () {
+        console.log('eat');
+        return this
+      };
+      this.run = function () {
+        console.log('run')
+        return this
+      };
+      this.sleep = function () {
+        setTimeout(function () {
+          console.log('sheep');
+        }, 10)
+        return this
+      }
+    }
+
+    var s = new Sheep();
+    s.sleep().eat().run().sleep()
+</script>
+</html>

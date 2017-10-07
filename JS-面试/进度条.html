@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container {
+            border: 2px solid red;
+            width: 600px;
+            height: 50px;
+            position: relative;
+        }
+
+        #js-process {
+            position: absolute;
+            background-color: #0066CC;
+            /*width: 50%;*/
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+<p>三种思路:</p>
+<ul>
+    <li>WebSocket</li>
+    <li>内嵌一个 iframe,写一个 timer 不停去刷新 iframe 中的内容(iframe 的 src 属性指向你的长耗时任务的 URL),根据内容字符串的最后一个百分号的值，获得进度。</li>
+    <li>使用 ajax XMLHttpRequest level 2 API</li>
+    <li>https://pagespeed.v2ex.com/t/316281</li>
+</ul>
+
+<div class="container">
+    <div id="js-process"></div>
+</div>
+
+<script>
+  let processBar = document.getElementById('js-process');
+  let width = 80;
+  let timerId;
+  timerId = setInterval(frame, 100);
+  function frame() {
+    if (width >= 100) {
+      clearInterval(timerId);
+    } else {
+      width += 1;
+      processBar.style.width = width + '%';
+    }
+  }
+
+
+</script>
+
+</body>
+</html>

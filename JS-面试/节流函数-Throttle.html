@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div style="height: 1999px"></div>
+
+<script>
+
+  let count = 0;
+  function testFn() {
+    console.log(count++);
+  }
+
+
+  let throttle = function (fn, delay, atleast) {
+    let timer = null;
+    let startTime = null;
+    return function () {
+      let now = new Date();
+      clearTimeout(timer);
+      if (now - startTime >= atleast) {
+        testFn();
+        startTime = now;
+      } else {
+        timer = setTimeout(fn, delay)
+      }
+    }
+  };
+
+  window.onscroll = throttle(testFn, 200, 1000)
+
+</script>
+
+</body>
+</html>

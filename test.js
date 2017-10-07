@@ -1,25 +1,13 @@
-var t = 3;
+var o = {}; // Creates a new object
 
-var A = function () {
-  this.t = 1;
-};
+// Example of an object property added
+// with defineProperty with a data property descriptor
+Object.defineProperty(o, 'a', {
+  value: 37,
+  writable: true,
+  enumerable: true,
+  configurable: true
+});
 
-A.prototype.say = function () {
-
-  console.log(this.t)
-};
-
-
-var b = {
-  t: 2,
-  say: function () {
-    console.log('bb')
-  }
-};
-
-
-var a = new A();
-
-a.say.call(b);
-
-console.log(a)
+delete o.a;
+console.log(o);

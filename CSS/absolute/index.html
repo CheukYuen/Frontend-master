@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        .container {
+            /*border: 1px solid gray;*/
+            /*position: relative;*/
+            /*height: 200px;*/
+        }
+
+        .example {
+            position: relative;
+            display: inline-block;
+            width: 30%;
+        }
+
+        .image-border {
+            position: absolute;
+            border: 1px solid blue;
+        }
+
+
+        .pointer {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50%;
+            right: -5px;
+            top: -5px;
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <div class="example">
+        <div class="image-border">
+            <img src="../doggie.jpg" alt="">
+            <span class="pointer"></span>
+        </div>
+    </div>
+
+    <div class="example">
+        <div class="image-border">
+            <img src="../catt.jpg" alt="">
+            <span class="pointer"></span>
+        </div>
+    </div>
+
+    <div class="example">
+        <div class="image-border">
+            <img src="../doggie.jpg" alt="">
+            <span class="pointer"></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

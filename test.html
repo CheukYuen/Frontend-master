@@ -1,20 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <title></title>
 </head>
 <body>
 
+<p>A function is triggered when the user is pressing a key in the input field.</p>
+
+<input type="text" onkeydown="myFunction()">
+
 <script>
-var t = {1: 2};
+  function myFunction() {
+    alert("You pressed a key 8inside the input field");
+  }
+</script>
 
-console.log(Object.keys(t))
+<script>
+  'use strict';
+
+  document.addEventListener('keydown', (event) => {
+    const keyName = event.key;
+
+    if (keyName === 'Control') {
+      // do not alert when only Control key is pressed.
+      return;
+    }
+
+    if (event.ctrlKey) {
+      // Even though event.key is not 'Control' (i.e. 'a' is pressed),
+      // event.ctrlKey may be true if Ctrl key is pressed at the time.
+      console.log(`Combination of ctrlKey + ${keyName}`);
+    } else {
+      console.log(`Key pressed ${keyName}`);
+    }
+  }, false);
+
+
+  document.addEventListener('keypress', (event)=>{
+    const  keyName = event.key;
+    console.log(`Current event is ${keyName}`);
+
+  });
 
 
 
 
+  document.addEventListener('keyup', (event) => {
+    const keyName = event.key;
 
+    // As the user release the Ctrl key, the key is no longer active.
+    // So event.ctrlKey is false.
+    if (keyName === 'Control') {
+      alert('Control key was released');
+    }
+  }, false);
 </script>
 
 </body>
