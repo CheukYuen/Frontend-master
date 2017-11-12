@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<ul>
+    <li class="switcher-li"><a href="http://www.sina.com.cn">www.sina.com.cn </a></li>
+    <li class="switcher-li"><a  href="http://www.baidu.com">www.baidu.com </a></li>
+    <li class="switcher-li"><a  href="http://www.yhd.com">www.yhd.com </a></li>
+</ul>
+
+<script>
+    let doms = document.querySelectorAll('ul li a');
+    for(let dom of doms){
+      dom.addEventListener('click', (event)=>{
+        event.preventDefault();
+        console.log("preventDefault" + event.currentTarget.innerHTML);
+      })
+    }
+</script>
+
+</body>
+</html>

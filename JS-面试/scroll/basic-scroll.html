@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="height: 1999px; background-color: red; width: 300px; overflow: scroll"></div>
+
+<script>
+
+
+  var ticking = false; // rAF 触发锁
+
+  function onScroll(){
+    if(!ticking) {
+      requestAnimationFrame(realFunc);
+      ticking = true;
+    }
+  }
+
+  function realFunc(){
+    // do something...
+    console.log("Success");
+    ticking = false;
+  }
+  // 滚动事件监听
+  window.addEventListener('scroll', onScroll, false);
+</script>
+
+</body>
+</html>

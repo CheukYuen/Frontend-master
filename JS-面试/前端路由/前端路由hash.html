@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li><a href="#/">turn white</a></li>
+    <li><a href="#/blue">turn blue</a></li>
+    <li><a href="#/green">turn green</a></li>
+</ul>
+<script>
+  function Router() {
+    // save route path and callback
+    this.routes = {};
+    this.currentUrl = '';
+  }
+
+  // Add router.
+  Router.prototype.route = function (url, callback) {
+    this.routes[url] = callback || function () {};
+  };
+
+  // Refresh data
+  Router.prototype.refresh = function () {
+    console.log(this);
+    this.currentUrl = location.hash.slice(1) || '/';
+    this.routes[this.currentUrl]();
+  };
+
+  // Add event listener on hashchange
+  // Init when Dom and JS loaded.
+  Router.prototype.init = function () {
+    window.addEventListener('load', this.refresh.bind(this));
+    window.addEventListener('hashchange', this.refresh.bind(this));
+  };
+
+  window.Router = new Router();
+  window.Router.init();
+
+  function changeColor(color) {
+    document.body.style.backgroundColor = color;
+  }
+
+  window.Router.route('/blue', function () {
+    changeColor('blue');
+  });
+  window.Router.route('/green', function () {
+    changeColor('green');
+  });
+  window.Router.route('/', function () {
+    changeColor('white');
+  });
+
+</script>
+
+</body>
+</html>

@@ -17,29 +17,153 @@
 <img src="https://user-gold-cdn.xitu.io/2017/5/9/921eb4f32090ccb311dfd665d49ca7db?imageView2/0/w/1280/h/960" alt="">
 <img src="https://user-gold-cdn.xitu.io/2017/5/9/9c3551ed848146350bde8fcc80d6c3e0?imageView2/0/w/1280/h/960" alt="">
 
-<div id="app">
-    <input type="text" id="inputDiv">
-    <span id="display"></span>
+
+<div style="border: 2px solid red; width: 400px; height: 200px; padding: 40px">
+    <div id="app">
+        <input type="text" id="inputDiv" v-model="text">
+        {{text}}
+    </div>
 </div>
 
 
 <script>
-  let obj = {};
-  let input = document.getElementById('inputDiv');
-  let display = document.getElementById('display');
 
-  Object.defineProperty(obj, 'hello', {
-    set: function (val) {
-      input.value = val;
-      display.innerHTML = val;
+
+  let dom = document.getElementById('app');
+
+  function nodeToFragment(node, vm) {
+    let fragment = document.createDocumentFragment();
+    let child;
+    while (child = node.firstChild) {
+      compile(child, vm);
+      fragment.appendChild(child);
+    }
+
+    return fragment
+  }
+
+  function compile(node, vm) {
+    if (node.nodeType === 1) {
+      let attributes = node.attributes;
+      for (let att of attributes) {
+        if (att.nodeName === 'v-model') {
+
+          let name = att.nodeValue;
+          node.addEventListener('input', function (e) {
+            vm[name] = e.target.value;
+          });
+          node.removeAttribute('v-model');
+          new Watcher(vm, node, name, 'input');
+        }
+      }
+    }
+
+    let regex = /{{(.*)}}/;
+    if (node.nodeType === 3) {
+      if (regex.test(node.nodeValue)) {
+        let result = regex.exec(node.nodeValue);
+        let name = result[1].trim();
+        node.nodeValue = vm[name]
+        new Watcher(vm, node, name, 'text');
+
+      }
+    }
+  }
+
+
+  function defineReactive(vm, key, val) {
+    let dep = new Dep();
+
+    Object.defineProperty(vm, key, {
+      get: function () {
+
+        //Watcher get 会触发
+        if (Dep.target) {
+          dep.addSub(Dep.target);
+        }
+        return val
+      },
+      set: function (newVal) {
+        if (newVal === val) {
+          return
+        }
+        val = newVal;
+        dep.notify();
+      }
+    })
+  }
+
+  function observe(obj, vm) {
+    Object.keys(obj).forEach(function (key) {
+      defineReactive(vm, key, obj[key])
+    })
+
+  }
+
+  function Dep() {
+    this.subs = [];
+  }
+
+  Dep.prototype = {
+    addSub: function (sub) {
+      this.subs.push(sub)
+    },
+
+    notify: function () {
+      this.subs.forEach(function (sub) {
+        sub.update();
+      });
+    }
+  };
+
+  function Watcher(vm, node, name, nodeType) {
+    Dep.target = this;
+    this.vm = vm;
+    this.node = node;
+    this.name = name;
+    this.nodeType = nodeType;
+    this.get();
+    Dep.target = null;
+  }
+
+  Watcher.prototype = {
+    get(){
+      //触发defineProperty get, add watcher进入 dep subs
+      this.value = this.vm[this.name]
+    },
+    update(){
+      this.get();
+      console.log(this);
+      if (this.nodeType === 'input') {
+        this.node.value = this.value;
+      }
+      if (this.nodeType === 'text') {
+        this.node.nodeValue = this.value;
+      }
+    }
+  };
+
+
+  function Vue(option) {
+    this.data = option.data;
+    observe(this.data, this);
+    this.id = option.el;
+    let dom = document.getElementById(this.id);
+    let fragment = nodeToFragment(dom, this);
+    dom.appendChild(fragment);
+
+
+  }
+
+  let vm = new Vue({
+    el: 'app',
+    data: {
+      text: 'Hello World'
     }
   });
-
-  input.addEventListener('keyup', function (e) {
-    obj.hello = e.target.value;
-  })
 
 
 </script>
 </body>
 </html>
+

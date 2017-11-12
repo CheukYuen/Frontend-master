@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		body {
+			background: grey;
+		}
+
+		header, main, footer {
+			width: 80%;
+			margin: 0 auto;
+			background-color: rgba(0, 255, 0, 0.5);
+
+		}
+
+		main, header, nav, article, aside, footer, section {
+			background-color: rgba(0, 255, 0, 0.5);
+			padding: 1%;
+		}
+
+		header img {
+			height: 60px;
+			padding-top: 20.15px;
+		}
+
+		header {
+			display: flex;
+			margin-bottom: 10px;
+			flex-flow: row wrap;
+		}
+
+		header h1 {
+			flex-grow: 5;
+			text-align: center;
+		}
+
+		nav {
+			flex-basis: 100%;
+		}
+
+		nav ul {
+			display: flex;
+		}
+
+		nav li {
+			display: inline;
+			flex-grow: 1;
+		}
+
+		/*nav end*/
+
+		main {
+			display: flex;
+		}
+
+		article {
+			flex-grow: 4;
+		}
+
+		aside {
+			flex-grow: 1;
+		}
+
+		aside a {
+			display: block;
+			float: left;
+			width: 50%;
+		}
+
+		aside img {
+			max-width: 100%;
+		}
+
+	</style>
+</head>
+<body>
+
+<header>
+	<h1>Birdwatching</h1>
+	<img src="dove.png" alt="a simple dove logo">
+
+	<nav>
+		<ul>
+			<li><span>Home</span></li>
+			<li><a href="#">Get started</a></li>
+			<li><a href="#">Photos</a></li>
+			<li><a href="#">Gear</a></li>
+			<li><a href="#">Forum</a></li>
+		</ul>
+	</nav>
+
+</header>
+
+<main>
+	<img class="" src="https://cdn.css-tricks.com/wp-content/uploads/2013/04/justify-content-2.svg" alt="" width="440" height="666" />
+	<article style="background-color: #0066CC">
+		<h2>Welcome</h2>
+
+		<p>Welcome to our fake birdwatching site. If this were a real site, it would be the ideal place to come to learn
+			more
+			about birdwatching, whether you are a beginner looking to learn how to get into birding, or an expert
+			wanting to
+			share ideas, tips, and photos with other like-minded people.</p>
+
+		<p>So don't waste time! Get what you need, then turn off that computer and get out into the great outdoors!</p>
+		<div style="height: 500px">asdas</div>
+	</article>
+	<aside>
+		<h2>Favourite photos</h2>
+
+		<a href="favorite-1.jpg"><img src="favorite-1_th.jpg"
+		                              alt="Small black bird, black claws, long black slender beak, links to larger version of the image"></a>
+		<a href="favorite-2.jpg"><img src="favorite-2_th.jpg"
+		                              alt="Top half of a pretty bird with bright blue plumage on neck, light colored beak, blue headdress, links to larger version of the image"></a>
+		<a href="favorite-3.jpg"><img src="favorite-3_th.jpg"
+		                              alt="Top half of a large bird with white plumage, very long curved narrow light colored break, links to larger version of the image"></a>
+		<a href="favorite-4.jpg"><img src="favorite-4_th.jpg"
+		                              alt="Large bird, mostly white plumage with black plumage on back and rear, long straight white beak, links to larger version of the image"></a>
+
+	</aside>
+</main>
+
+
+<footer>
+	<p>This fake website example is CC0 — any part of this code may be reused in any way you wish. Original example
+		written
+		by Chris Mills, 2016.</p>
+
+	<p><a href="http://game-icons.net/lorc/originals/dove.html">Dove icon</a> by Lorc.</p>
+</footer>
+</body>
+</html>

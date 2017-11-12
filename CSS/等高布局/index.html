@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container {
+            overflow: hidden;
+            border: 3px solid greenyellow;
+            width: 800px;
+        }
+
+        .left {
+            float: left;
+            background-color: #0066CC;
+            width: 200px;
+            padding-bottom: 400px;
+            margin-bottom: -400px;
+        }
+
+        .right {
+            float: left;
+            background-color: red;
+            width: 600px;
+            padding-bottom: 400px;
+            margin-bottom: -400px;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="container">
+    <div class="left">
+        <span>one line</span>
+    </div>
+    <div class="right">
+        <span>主要思想：
+            <br>
+原理：
+            <br>
+这种技术的关键是给每个框设置大的底内边距，然后用数值相似的负外边距消除这个高度。这会导致每个列溢出容器元素。如果把容器的overflow属性设置为hidden,列就在最高点被裁切。
+知识背景:
+            <br>
+1.background 会填充内边距 padding，而不会填充外边距 margin 。
+            <br>
+2.通过 overflow:hidden; 根据元素最底的高度进行截取（即padding），并且div内中文字在width;height;如果没有填满会溢出到padding中。 </span>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <span>more line</span>
+    </div>
+</div>
+
+</body>
+</html>

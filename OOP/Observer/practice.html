@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="addObserver">Add Observer</button>
+<input id="subject" type="checkbox">
+<br>
+<div id="container"></div>
+
+
+<script>
+
+  function ObserverList() {
+    this.list = [];
+  }
+
+  ObserverList.prototype.add = function (obj) {
+    this.list.push(obj);
+  };
+
+  ObserverList.prototype.count = function () {
+    return this.list.length;
+  };
+
+  ObserverList.prototype.get = function (index) {
+    if (index > -1 && index < this.list.length) {
+      return this.list[index]
+    }
+  };
+
+  ObserverList.prototype.removeAt = function (index) {
+    this.list.splice(index, 1);
+  };
+
+  ObserverList.prototype.indexOf = function (obj) {
+    return this.list.indexOf(obj)
+  };
+
+  function Subject() {
+    this.observers = new ObserverList();
+  };
+
+  Subject.prototype.addObserver = function (obj) {
+    this.observers.add(obj)
+  };
+
+  Subject.prototype.removeObserver = function (obj) {
+    this.observers.removeAt(this.observers.indexOf(obj))
+  };
+
+  Subject.prototype.notify = function (value) {
+    let length = this.observers.count();
+    for (let i = 0; i < length; i++) {
+        this.observers.get(i).update(value);
+    }
+  };
+
+  function Observer() {
+    this.update = function (value) {
+      this.checked = value;
+    }
+  }
+
+  function extend(obj, extension) {
+    for (let prop in extension) {
+      obj[prop] = extension[prop]
+    }
+  }
+
+
+  let subjectEle = document.getElementById("subject"),
+    addObserverEle = document.getElementById("addObserver"),
+    observerContainer = document.getElementById("container");
+
+  extend(subjectEle, new Subject());
+
+  addObserverEle.onclick = function () {
+    let checkEle = document.createElement("input");
+    checkEle.type = "checkbox";
+    extend(checkEle, new Observer());
+    observerContainer.appendChild(checkEle);
+    subjectEle.addObserver(checkEle);
+  };
+
+  subjectEle.onclick = function () {
+    subjectEle.notify(subjectEle.checked);
+  }
+
+</script>
+
+</body>
+</html>

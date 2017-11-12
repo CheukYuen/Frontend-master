@@ -39,5 +39,33 @@
 </div>
 
 
+
+<ul>
+    <li><a href="t1.html">t1.html</a></li>
+    <li><a href="tooltip.html">tooltip.html</a></li>
+    <li><a href="test.html">test.html</a></li>
+</ul>
+
+<div id="back">
+    <button>back</button>
+</div>
+
+<div id="forward">
+    <button>forward</button>
+</div>
+
+
+<script>
+  document.querySelector('#back').addEventListener('click', function () {
+    window.history.back()
+  });
+
+  document.querySelector('#forward').addEventListener('click', function () {
+    window.history.forward()
+  });
+  console.log('window.history.length: ' + window.history.length);
+
+</script>
+
 </body>
 </html>

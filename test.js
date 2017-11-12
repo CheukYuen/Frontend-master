@@ -1,13 +1,16 @@
-var o = {}; // Creates a new object
+let clientData = {
+  id: 1111,
+  fullName: 'Not Set',
+  setUserName: function (firstName, lastName) {
+    this.fullName = firstName + ' ' + lastName;
+  }
+};
 
-// Example of an object property added
-// with defineProperty with a data property descriptor
-Object.defineProperty(o, 'a', {
-  value: 37,
-  writable: true,
-  enumerable: true,
-  configurable: true
-});
+function getUserInput(firstName, lastName, callback) {
+  callback(firstName, lastName)
+}
 
-delete o.a;
-console.log(o);
+
+getUserInput('Barack', 'Obama', clientData.setUserName.bind(clientData));
+
+console.log(clientData.fullName);

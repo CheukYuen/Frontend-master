@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		main {
+			width: 640px;
+			margin: 0 auto;
+		}
+
+		.full-image {
+			/*position: relative;*/
+			display: block;
+			width: 640px;
+			height: 480px;
+		}
+
+		.full-image img {
+			width: 640px;
+		}
+
+		.thumb-bar img {
+			width: 25%;
+		}
+	</style>
+</head>
+<body>
+
+<main>
+	<div class="full-image">
+		<img class="displayed-img" src="favorite-1.jpg" alt="">
+	</div>
+	<div class="thumb-bar">
+	</div>
+</main>
+
+<script>
+  let fullImg = document.querySelector('.full-image img');
+  let thumbBar = document.querySelector('.thumb-bar');
+
+
+  for (let i = 1; i < 5; i++) {
+    let newImage = document.createElement('img');
+    newImage.setAttribute('src', 'favorite-' + i + '.jpg')
+    thumbBar.appendChild(newImage);
+    newImage.onclick = function (e) {
+      let imgSrc = e.target.getAttribute('src');
+      displayImage(imgSrc);
+    }
+  }
+
+  function displayImage(src) {
+    fullImg.setAttribute('src', src);
+  }
+
+</script>
+</body>
+</html>
